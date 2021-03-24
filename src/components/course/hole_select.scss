@@ -1,0 +1,27 @@
+@import "../../resources/css/scss/_mbcVariables";
+@import "../../resources/css/scss/_mbc";
+.holes-container {
+  width: 100vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: .5rem;
+}
+
+.hole-select {
+    @include backgrounds($yellow, 18);
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    padding: 3rem;
+    text-align: center;
+    height: 50vw;
+    justify-content: center;
+    font-size: 5rem;
+    line-height: 2;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+

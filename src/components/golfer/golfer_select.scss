@@ -1,0 +1,11 @@
+@import "../../resources/css/scss/_mbcVariables";
+@import "../../resources/css/scss/_mbc";
+
+.golfer-choice {
+  @include backgrounds($main-color, 10);
+  width: 100vw;
+  height: 6rem;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
