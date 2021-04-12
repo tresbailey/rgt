@@ -1,0 +1,47 @@
+@import "../../resources/css/scss/_mbcVariables";
+@import "../../resources/css/scss/_mbc";
+
+
+
+.golfer-source {
+  border: 3px solid tomato;
+  min-height: 10rem;
+  width: 40vw;
+  padding: 1rem;
+}
+
+.teams-container {
+  width: 50vw;
+}
+
+.team-container {
+  border: 3px solid white;
+  min-height: 10rem;
+  margin: 1rem;
+}
+
+.course-saver {
+  background-color: tomato;
+  width: 90vw;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.course-save-btn {
+}
+
+.min-courses {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.min-course-button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 5rem;
+  color: tomato;
+  height: 3rem;
+  margin: 1rem;
+}

@@ -12,10 +12,10 @@ export default class CourseSelect extends React.Component {
       this.state = {golfer: golfer};
       this.goBack = this.goBack.bind(this);
       this.courses = [
-          new Course('thistle', "Thistle Golf Club"),
+          new Course('thistle', "Thistle"),
           new Course('pearl west', 'Pearl West'),
           new Course('pearl east', 'Pearl East'),
-          new Course('glen dornoch', 'Glen Dornoch Golf Course'),
+          new Course('glen dornoch', 'Glen Dornoch'),
           new Course('crow creek', 'Crow Creek')
       ];
   }
@@ -45,32 +45,16 @@ export default class CourseSelect extends React.Component {
     const { golfer } = this.state;
     const courseList = this.courseList();
     return (
-      <div>
-      <article>
-      <div className="container-fluid primary-content tagline-box">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="main-marquee">
-              <div className="jumbotron jumbotron-fluid">
-                <div className="tagline-wrapper">
                   <div className="main-tagline">
-                    Which Course Are You Playing?
-                    <div className="flex-column course-container" >
+                    <h2>Which Course Are You Playing?</h2>
+                    <div className="flex-row course-container" >
                         {courseList}
-                    <div className="golfer-choice" onClick={this.goBack}>
+                    <div className="course-choice" onClick={this.goBack}>
                         <span className="fa fa-angle-left"></span>
                         <span>Back</span>
                     </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </article>
-      </div>
     );
   }
 }

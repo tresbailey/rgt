@@ -9,13 +9,13 @@
     @include backgrounds($green, 18);
     display: flex;
     flex-direction: column;
-    width: 75vw;
+    width: 10rem;
     background-color: #f7f7f9;
     padding: 3rem;
     text-align: center;
-    height: 50vw;
+    height: 10rem;
     justify-content: center;
-    font-size: 5rem;
+    font-size: 2rem;
     line-height: 2;
 }
 

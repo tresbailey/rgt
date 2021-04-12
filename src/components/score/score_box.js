@@ -1,41 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./score_box.scss";
 
-export default class ScoreBox extends React.Component {
+const ScoreBox = props => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            selected: this.props.selected
-        };
-        this.handleAchieved = this.handleAchieved.bind(this);
-    }
+    const [selected, setSelected] = useState(props.selected);
 
-    handleAchieved() {
-        this.setState(prevState => ({
-            selected: !prevState.selected
-        }));
-        this.props.onAchieved(
+    const handleAchieved = () => {
+        setSelected(!selected);
+        props.onAchieved(
             {
-                name: this.props.name,
-                value: this.props.value,
-                score: this.props.score
+                name: props.name,
+                value: props.value,
+                score: props.score
             }
         );
     }
 
-    render() {
-        const name = this.props.name;
-        const description = this.props.description;
-        const value = this.props.value;
-        return (
-            <div className={"score-select " + (this.state.selected? 'selected': '')} onClick={this.handleAchieved}>
+    const name = props.name;
+    const description = props.description;
+    const value = props.value;
+    return (
+            <div className={"score-select " + (selected? 'selected': '')} onClick={handleAchieved}>
                 <span>{name}</span>
                 { description &&
                 <span className="description">{description}</span>
                 }
                 <span>${value}</span>
             </div>
-        );
-    }
+    );
 }
+
+export default ScoreBox;

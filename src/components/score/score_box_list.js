@@ -1,63 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ScoreBox from "./score_box.js";
 import Strokes from "./strokes.js";
 
-export default class ScoreBoxList extends React.Component {
+const ScoreBoxList = props => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            bonus: props.bonus,
-            hole: props.hole,
-            achievements: [],
-            score: props.score
-        };
-        this.available_scores = [
-            new Strokes('Eagle', this.state.bonus ? "Bounce Back Bonus" : "", 7, true),
-            new Strokes('Birdie', this.state.bonus ? "Bounce Back Bonus" : "", 3, true),
-            new Strokes('Par', this.state.bonus ? "Bounce Back Bonus" : "", 0, true),
-            new Strokes('Bogey', null, 0, false),
-            new Strokes('Double Bogey', null, 0, false)
-        ]
-        this.handleAchievement = this.handleAchievement.bind(this);
-        this.handleBack = this.handleBack.bind(this);
-    }
+  const [bonus, setBonus] = useState(props.bonus);
+  const [hole, setHole] = useState(hole);
+  const [achievements, setAchievements] = useState(achievements);
+  const [score, setScore] = useState(score);
+  const available_scores = [
+          new Strokes('Eagle', bonus ? "Bounce Back Bonus" : "", 7, true),
+          new Strokes('Birdie', bonus ? "Bounce Back Bonus" : "", 3, true),
+          new Strokes('Par', bonus ? "Bounce Back Bonus" : "", 0, true),
+          new Strokes('Bogey', null, 0, false),
+          new Strokes('Double Bogey', null, 0, false)
+  ];
 
-    handleAchievement(result) {
-        this.setState({ 
-            score: result.score,
-            achievements: [...this.state.achievements, result] }, () => {
-        this.props.onSave(this.state.hole, this.state.score);
-        });
-    }
+  const handleAchievement = result => {
+    setScore(result.score);
+    setAchievements([...achievements, result]);
 
-    potentialScores() {
-        var boxes = [];
-        const set_score = this.state.score;
-        this.available_scores.forEach((item) => {
-            const value = item.isBonusable && this.state.bonus ? item.value + 1 : item.value;
-            boxes.push(<ScoreBox name={item.name} value={value} description={item.description} onAchieved={this.handleAchievement} score={item} selected={set_score && set_score.name === item.name} />)
-        });
-        return boxes;
-    }
+    props.onSave(hole, score);
+  }
 
-    render() {
-        const strokes = this.potentialScores();
-        const hole = this.state.hole;
-        return (
-            <div>
-            Hole #{hole}
-                <div className="flex-row holes-container">
-                    <div className="hole-select" onClick={this.handleBack}>
-                        <div className="fa fa-angle-left"></div>
-                        <div>Back</div>
-                    </div>
-                    {strokes}
-                </div>
-            </div>
-        );
-    }
-    handleBack() {
-        this.props.onCancel();
-    }
+  const potentialScores = () =>  {
+      var boxes = [];
+      const set_score = score;
+      available_scores.forEach((item) => {
+          const value = item.isBonusable && bonus ? item.value + 1 : item.value;
+          boxes.push(<ScoreBox name={item.name} value={value} description={item.description} onAchieved={handleAchievement} score={item} selected={set_score && set_score.name === item.name} />)
+      });
+      return boxes;
+  }
+
+  const handleBack = () => {
+      props.onCancel();
+  }
+
+  const strokes = potentialScores();
+  return (
+          <div className="flex-row">
+          Hole #{hole}
+              <div className="flex-row holes-container">
+                  <div className="hole-select" onClick={handleBack}>
+                      <div className="fa fa-angle-left"></div>
+                      <div>Back</div>
+                  </div>
+                  {strokes}
+              </div>
+          </div>
+  );
 }
+
+export default ScoreBoxList;
